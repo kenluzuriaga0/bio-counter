@@ -3,7 +3,7 @@ import { FaPlus, FaEdit } from "react-icons/fa";
 
 export default function TurnoContador() {
   const [turno, setTurno] = useState(0);
-  const [nuevoTurno, setNuevoTurno] = useState(0);
+  const [nuevoTurno] = useState(0);
   const [imagenes] = useState([
     "/Banner-1.jpg",
     "/Banner-2.jpg",
@@ -11,12 +11,12 @@ export default function TurnoContador() {
   ]);
   const [index, setIndex] = useState(0);
 
-  useEffect(() => {
-    fetch("http://localhost:8000/turno/1") //  TODO: implementar FastAPI
-      .then((res) => res.json())
-      .then((data) => setTurno(data.numero))
-      .catch((err) => console.error("Error al obtener el turno", err));
-  }, []);
+  // useEffect(() => {
+  //   fetch("http://localhost:8000/turno/1") //  TODO: implementar FastAPI
+  //     .then((res) => res.json())
+  //     .then((data) => setTurno(data.numero))
+  //     .catch((err) => console.error("Error al obtener el turno", err));
+  // }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -28,20 +28,20 @@ export default function TurnoContador() {
   const incrementarTurno = async () => {
     const nuevoNumero = turno + 1;
     setTurno(nuevoNumero);
-    await fetch("http://localhost:8000/turno/1", {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ numero: nuevoNumero }),
-    });
+    // await fetch("http://localhost:8000/turno/1", {
+    //   method: "PUT",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({ numero: nuevoNumero }),
+    // });
   };
 
   const establecerTurno = async () => {
     setTurno(nuevoTurno);
-    await fetch("http://localhost:8000/turno/1", {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ numero: nuevoTurno }),
-    });
+    // await fetch("http://localhost:8000/turno/1", {
+    //   method: "PUT",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({ numero: nuevoTurno }),
+    // });
   };
 
   return (
